@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heading-Workshop</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family:   Arial, Helvetica, sans-serif;
+            margin: 0px;
+            padding: 0px ;
+            background-color: rgb(183, 235, 255);
+            line-height: 40px;
+        }
+        header{
+            background:linear-gradient(90deg,rgb(255, 113, 196), rgb(160, 0, 0));
+            padding: 50px 20px 20px;
+            color: white;
+            text-align: center;
+            box-shadow: 3px 3px 3px;
+            padding-bottom: 20px;
+        }
+        .container{
+            max-width: 1700px;
+            margin: 0 auto;
+        }
+        .color-ontop{
+            font-size: 30px;
+            font-weight: bold;
+            text-shadow: 3px 3px 3px grey;
+        }
+        .text-center{
+            text-align: center;
+        }
+        .card{
+            border-top: 3px solid red;
+            background-color: rgb(255, 255, 255);
+            border-radius: 10px;
+            box-shadow: 3px 3px 3px gray;
+            padding: 15px 50px 50px;
+            margin-bottom: 20px;
+        } 
+        .color-border{
+            border-top: 3px solid red;
+            border-left: 2px solid red;
+            background-color: rgb(235, 232, 232);
+            border-radius: 10px;
+            box-shadow: 3px 3px 3px gray;
+            padding: 5px;
+        }
+        .note{
+            border-left: 2px solid rgb(247, 148, 0);
+            background-color: rgb(255, 239, 150);
+            margin: 20px;
+        }
+
+        .note::before{
+            content: "📌";
+        }
+        a{
+            text-decoration: none;
+            color: white;
+        }
+        a:hover{
+            text-decoration: underline;
+        }
+        .deku{
+            padding: 50px ;
+        }
+        .deku-size{
+            font-size: 50px;
+            margin-bottom: 10px;
+            color: rgb(0, 0, 128);
+        }
+        .dekup-size{
+            font-size: 20;
+        }
+        .h1-label{ background: red;
+            box-shadow: 3px 3px 3px black;
+            border-radius: 3px;
+            padding: 5px ;
+        }
+        .h2-label{ background: rgb(94, 137, 255);
+            box-shadow: 3px 3px 3px black;
+            border-radius: 3px;
+            padding: 5px ;
+        }
+        .h3-label{ background: rgb(76, 255, 121);
+            box-shadow: 3px 3px 3px black;
+            border-radius: 3px;
+            padding: 5px ;
+        }
+        .h4-label{ background: rgb(255, 252, 102);
+            box-shadow: 3px 3px 3px black;
+            border-radius: 3px;
+            padding: 5px ;
+        }
+        .h5-label{ background: rgb(255, 0, 191);
+            box-shadow: 3px 3px 3px black;
+            border-radius: 3px;
+            padding: 5px ;
+        }
+        .h6-label{ background: rgb(255, 0, 85);
+            box-shadow: 3px 3px 3px black;
+            border-radius: 3px;
+            padding: 5px ;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <p class="color-ontop">เรียนรู้เว็ปเบื้องต้น</p>
+        <nav>
+            <a href="index.html">Home</a>
+        </nav>
+    </header>
+
+     <div class="container">
+    <section class="deku">
+        <h1 class="deku-size">Workshop: HTML Heading</h1>
+     <p class="dekup-size">ฝึกใช้แท็ก &lt; h1> – &lt;h6> และการปรับขนาดหัวข้อด้วย CSS </p></section>
+     <div class="card">
+     <h2>1.ความหมายของ Headings (H1–H6)</h2>
+     <p>HTML มีหัวข้อทั้งหมด 6 ระดับ:</p>
+        <ul>
+            <li><span class="h1-label">H1</span> – หัวข้อใหญ่สุด ใช้สำหรับชื่อหน้าเว็บหรือหัวข้อหลัก </li>
+            <li><span class="h2-label">H2</span> – หัวข้อรองแบ่ง Section ของเนื้อหา </li>
+            <li><span class="h3-label">H3</span> – หัวข้อย่อยภายใน H2 </li>
+            <li><span class="h4-label">H4</span> – ย่อยลงไปอีกระดับ </li>
+            <li><span class="h5-label">H5</span> – ใช้น้อยแต่เน้นลำดับข้อมูล </li>
+            <li><span class="h6-label">H6</span> – เล็กสุดใช้กับหัวข้อระดับลึก </li>
+        </ul>
+    <p class="note">H1 ควรมีเพียง 1 อันในแต่ละหน้า เพื่อช่วย SEO และโครงสร้างเอกสาร </p>
+</div>
+        
+
+<div class="card"><h2>2. ตัวอย่างการใช้ H1–H6 </h2>
+        <pre class="color-border"><code>
+        &lt;h1&gt;Welcome to My Website&lt;/h1&gt; 
+        &lt;h2&gt;HTML Basics&lt;/h2&gt; 
+        &lt;h3&gt;What is HTML?&lt;/h3&gt; 
+        &lt;h4&gt;HTML Syntax&lt;/h4&gt; 
+        &lt;h5&gt;Example Code&lt;/h5&gt; 
+        &lt;h6&gt;Note: Case Sensitive&lt;/h6&gt; </pre></code>
+        <p class="note">เมื่อแสดงผลจะได้ขนาดลดหลั่นแบบนี้</p>
+        <h1>H1: Welcome to My Website </h1>
+        <h2>H2: HTML Basics </h2>
+        <h3>H3: What is HTML? </h3>
+        <h4>H4: HTML Syntax </h4>
+        <h5>H5: Example Code </h5>
+        <h6>H6: Note about heading size</h6></div></div>
+    
+        <!-- <p class="text-center"><a href="index.html">Back to Home🔙</a></p> -->
+
+
+</body>
+</html>
