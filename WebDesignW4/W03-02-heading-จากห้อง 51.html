@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heading Workshop</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Prompt', Arial, sans-serif;
+            background-color: #f3f7fa;
+            line-height: 1.6;
+            color: #334155;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0f172a, #1e3a8a);
+            text-align: center;
+            padding: 30px 20px;
+            color: white;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+            border-bottom: 4px solid #3b82f6;
+        }
+
+        .header h1 {
+            font-size: 26px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .header a {
+            display: inline-block;
+            color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.15);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 6px 20px;
+            border-radius: 20px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            width: 90%;
+        }
+
+        .hero {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            color: #1e3a8a;
+            font-size: 40px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            position: relative;
+            display: inline-block;
+        }
+
+
+        .hero p {
+            color: #64748b;
+            font-size: 18px;
+            margin-top: 5px;
+        }
+
+        .tag-color {
+            color: #2563eb;
+            background-color: #dbeafe;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 0.95em;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(30, 41, 59, 0.04);
+            margin-bottom: 30px;
+            border: 1px solid #e2e8f0;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+
+        .card-header {
+            background-color: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
+            color: #1e3a8a;
+            font-weight: 600;
+            padding: 18px 24px;
+        }
+
+        .card-header h2 {
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .card-body {
+            padding: 30px 40px;
+        }
+
+        .card-margin-bt {
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            font-size: 15px;
+            color: #475569;
+        }
+
+        .label {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 6px;
+            color: white;
+            font-weight: 700;
+            text-align: center;
+            font-size: 13px;
+            margin-right: 12px;
+            min-width: 42px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .h1-label { background-color: #ef4444; }
+        .h2-label { background-color: #3b82f6; }
+        .h3-label { background-color: #10b981; }
+        .h4-label { background-color: #ec4899; }
+        .h5-label { background-color: #f59e0b; }
+        .h6-label { background-color: #8b5cf6; }
+
+        /* Code Block Container Style */
+        .code-container {
+            background-color: #0f172a;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            margin-bottom: 25px;
+            border: 1px solid #1e293b;
+        }
+        
+        .code-header {
+            background-color: #0b0f19;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            border-bottom: 1px solid #1e293b;
+        }
+
+
+        .code-lang {
+            margin-left: auto;
+            color: #94a3b8;
+            font-size: 12px;
+            font-family: monospace;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        pre {
+            background-color: transparent;
+            color: #e2e8f0;
+            padding: 20px;
+            font-size: 14px;
+            font-family: 'Fira Code', 'Courier New', Courier, monospace;
+            overflow-x: auto;
+            margin: 0;
+            line-height: 1.6;
+        }
+        
+        code {
+            font-family: inherit;
+        }
+
+        .text-shade {
+            padding: 30px;
+            background-color: #f8fafc;
+            border-radius: 10px;
+            margin-top: 25px;
+            border: 1px dashed #cbd5e1;
+            position: relative;
+        }
+
+        .text-shade::before {
+            content: 'Live Preview';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background-color: #2563eb;
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .text-shade h1, .text-shade h2, .text-shade h3, .text-shade h4, .text-shade h5, .text-shade h6 {
+            font-family: 'Prompt', sans-serif;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .text-shade h1 { color: #1e293b; font-size: 32px; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; }
+        .text-shade h2 { color: #334155; font-size: 26px; }
+        .text-shade h3 { color: #475569; font-size: 21px; }
+        .text-shade h4 { color: #64748b; font-size: 17px; }
+        .text-shade h5 { color: #94a3b8; font-size: 14px; }
+        .text-shade h6 { color: #cbd5e1; font-size: 13px; margin-bottom: 0; }
+
+        .tip-box {
+            background-color: #fffbeb;
+            border: 1px solid #fef3c7;
+            border-left: 5px solid #f59e0b;
+            border-radius: 10px;
+            padding: 24px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.03);
+        }
+
+        .tip-box p {
+            color: #b45309;
+            margin-bottom: 10px;
+            font-size: 15px;
+        }
+
+
+        .tip-box b, .tip-box strong {
+            color: #78350f;
+            font-weight: 600;
+        }
+        
+        .note {
+            color: #1e3a8a;
+            background-color: #eff6ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin-top: 20px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="header">
+        <h1>เรียนรู้เว็บเบื้องต้น</h1>
+        <a href="../index.html">Home</a>
+    </section>
+
+
+    <div class="container">
+        <div class="hero">
+            <h1 class="text-title">Workshop: HTML Heading</h1>
+            <p>ฝึกใช้แท็ก <span class="tag-color">&lt;h1> – &lt;h6></span> และการปรับขนาดหัวข้อด้วย CSS</p>
+        </div>
+
+        <!-- card 1 -->
+        <div class="card">
+            <div class="card-header">
+                <h2>1. ความหมายของ Headings (H1–H6)</h2>
+            </div>
+            <div class="card-body">
+                <p style="margin-bottom: 20px; font-weight: 500; color: #1e293b;">HTML มีหัวข้อทั้งหมด 6 ระดับ</p>
+                <ul style="list-style: none;">
+                    <li class="card-margin-bt"><span class="label h1-label">H1</span> หัวข้อใหญ่สุด ใช้สำหรับชื่อหน้าเว็บหรือหัวข้อหลัก</li>
+                    <li class="card-margin-bt"><span class="label h2-label">H2</span> หัวข้อรอง แบ่ง Section ของเนื้อหา</li>
+                    <li class="card-margin-bt"><span class="label h3-label">H3</span> หัวข้อย่อยภายใน H2</li>
+                    <li class="card-margin-bt"><span class="label h4-label">H4</span> ย่อยลงไปอีกระดับ</li>
+                    <li class="card-margin-bt"><span class="label h5-label">H5</span> ใช้น้อย แต่เน้นลำดับข้อมูล</li>
+                    <li class="card-margin-bt"><span class="label h6-label">H6</span> เล็กสุด ใช้กับหัวข้อระดับลึก</li>
+                </ul>
+                <div class="note">💡 H1 ควรมีเพียง 1 อันในแต่ละหน้า เพื่อช่วย SEO และโครงสร้างเอกสาร</div>
+            </div>
+        </div>
+
+        <!-- card 2 -->
+        <div class="card">
+            <div class="card-header">
+                <h2>2. ตัวอย่างการใช้ H1–H6</h2>
+            </div>
+            <div class="card-body">
+                <div class="code-container">
+                    <div class="code-header">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                        <span class="code-lang">HTML</span>
+                    </div>
+                    <pre><code>&lt;h1&gt;Welcome to My Website&lt;/h1&gt;
+&lt;h2&gt;HTML Basics&lt;/h2&gt;
+&lt;h3&gt;What is HTML?&lt;/h3&gt;
+&lt;h4&gt;HTML Syntax&lt;/h4&gt;
+&lt;h5&gt;Example Code&lt;/h5&gt;
+&lt;h6&gt;Note: Case Sensitive&lt;/h6&gt;</code></pre>
+                </div>
+                <div class="text-shade">
+                    <h1>H1: Welcome to My Website</h1>
+                    <h2>H2: HTML Basics</h2>
+                    <h3>H3: What is HTML?</h3>
+                    <h4>H4: HTML Syntax</h4>
+                    <h5>H5: Example Code</h5>
+                    <h6>H6: Note about heading size</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- card 3 -->
+        <div class="tip-box">
+            <p>💡 <b>Tip:</b> Use only one &lt;h1&gt; per page - it represents the main topic or title.</p>
+            <p>📝 <strong>Note:</strong> Use HTML headings for headings only. Don't use headings to make text BIG or bold.</p>
+        </div>
+
+
+</body>
+
+</html>
