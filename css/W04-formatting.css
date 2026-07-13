@@ -8,9 +8,9 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f8fafc;
   color: #0f172a;
-  margin: 0;
-  padding: 0;
+  line-height: 1.6;
 }
+/*==============Header / Navigation===========*/
 
 header {
   background: linear-gradient(90deg, #003c9e, #006eff);
@@ -33,7 +33,6 @@ header {
 }
 
 .brand-text h2 {
-  margin: 0;
   font-size: 1.3rem;
 }
 
@@ -43,16 +42,13 @@ header {
   color: #dbeafe;
 }
 
-nav {
-  margin-top: 14px;
-}
-
 nav a {
   color: #ffffff;
   text-decoration: none;
   margin-right: 18px;
   font-size: 0.95rem;
 }
+/*======================= hero section ==========================*/
 
 .hero {
   padding: 45px 70px 25px;
@@ -62,28 +58,34 @@ nav a {
 }
 
 .hero-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 72px;
-  height: 72px;
-  background-color: #eef2ff;
-  color: #1e3a8a;
+  /* background-color: #0e30a0; */
+  background: linear-gradient(135deg, #003c9e, #006eff);
+  box-shadow: 0 8px 24px #006eff;
+  padding: 20px;
   border-radius: 18px;
-  font-size: 2rem;
-  margin-bottom: 16px;
+
+  color: #ffffff;
+  font-size: 50px;
+  font-weight: bold;
 }
 
-.hero h1 {
+.hero-text h1 {
   margin: 0 0 10px;
-  font-size: 2rem;
-  color: #0f172a;
+  font-size: 40px;
+  color: #133b9b;
 }
 
-.hero p {
-  margin: 0;
-  color: #334155;
-  max-width: 740px;
+.hero-text p {
+  color: #5e6e83;
+  font-size: 17px;
+}
+/*====================== Main section ============================*/
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  width: 100%;
 }
 
 .card-grid {
@@ -96,32 +98,155 @@ nav a {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 20px;
-  padding: 20px;
+  /* padding: 20px; */
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
 }
 
 .card-header {
   margin: 0 0 14px;
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: #1e293b;
+  font-size: 23px;
+  font-weight: bold;
+  color: #013383;
+  background-color: #f5f9ff;
+  padding: 14px;
 }
 
-.card p,
-.card ol,
-.card ul,
-.card pre {
-  margin: 8px 0;
-  line-height: 1.6;
+.card-header-icon {
+  background: #0f4bac;
+  color: #fff;
+  border-radius: 50%;
+
+  width: 38px;
+  height: 38px;
+
+  justify-content: center;
+  align-items: center;
+  display: inline-flex;
+}
+.card-header-icon.icon-purple {
+  background-color: rgb(128, 0, 122);
+}
+.purple-text {
+  color: rgb(128, 0, 122);
+}
+.card-body {
+  padding: 20px;
+}
+.format-row {
+  padding: 8px 0;
+  border-bottom: 1px solid rgb(216, 216, 216);
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 5px;
 }
 
-.card code {
-  background-color: #f1f5f9;
-  padding: 2px 6px;
-  border-radius: 6px;
-  font-size: 0.95rem;
+/*====================== Card 1 ============================*/
+
+.lable {
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  padding: 3px;
+  text-align: center;
+  overflow: hidden;
+}
+.b-lable {
+  background-color: rgba(255, 0, 0, 0.753);
+}
+.strong-lable {
+  background-color: rgba(255, 115, 0, 0.753);
+}
+.i-lable {
+  background-color: rgba(255, 187, 0, 0.753);
+}
+.em-lable {
+  background-color: rgba(94, 255, 0, 0.753);
+}
+.u-lable {
+  background-color: rgba(51, 255, 0, 0.753);
+}
+.mark-lable {
+  background-color: rgba(0, 174, 255, 0.753);
+}
+.small-lable {
+  background-color: rgba(0, 89, 255, 0.753);
+}
+.del-lable {
+  background-color: rgba(140, 0, 255, 0.753);
+}
+.sup-lable {
+  background-color: rgba(255, 0, 157, 0.753);
+}
+.sub-lable {
+  background-color: rgba(255, 0, 128, 0.753);
 }
 
+/*====================== Card 2 ============================*/
+
+.code-box {
+  background: linear-gradient(135deg, #0b1220 0%, #0f172a 60%);
+  padding: 20px;
+  margin: 20px;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.code-box pre {
+  margin: 0;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.code-box .num {
+  color: #9ca3af;
+  width: 30px;
+  display: inline-block;
+  text-align: right;
+  padding-right: 12px;
+}
+.code-box .tag {
+  color: #ff4d4f;
+}
+
+/*====================== Card 3 ============================*/
+
+.activity-list {
+  list-style: none;
+}
+.activity-list li {
+  margin: 20px;
+}
+.check {
+  background-color: #83f5a4;
+  /* padding: 4px 8px; */
+  border-radius: 50%;
+  display: inline-flex;
+  width: 30px;
+  height: 30px;
+
+  text-align: center;
+  justify-content: center;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 24px;
+}
+.check.check-green {
+  background-color: #83f5a4;
+}
+.check.check-yellow {
+  background-color: #facc15;
+}
+.check.check-red {
+  background-color: #ff4d4f;
+}
+.check.check-purple {
+  background-color: #8358ff;
+}
+
+/*====================== tip-box ============================*/
 .tip-box {
   background: #fff7df;
   border: 1px solid #facc15;
@@ -129,9 +254,12 @@ nav a {
   padding: 24px 30px;
   display: flex;
   gap: 20px;
-  align-items: flex-start;
+  align-items: center;
 }
-
+.tip-bold {
+  font-weight: bold;
+  color: #006eff;
+}
 .tip-box strong {
   color: #92400e;
 }
