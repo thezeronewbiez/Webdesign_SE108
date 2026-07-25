@@ -31,3 +31,18 @@
 - เรียนรู้การแยกไฟล์ HTML กับ CSS ให้อยู่คนละไฟล์ เพื่อให้โค้ดดูเป็นระเบียบและจัดการง่ายขึ้น
 - ทำความเข้าใจการใช้ `pre` สำหรับแสดงโค้ดตัวอย่าง และ `code` สำหรับเน้นคำสั่งในข้อความ
 
+## สัปดาห์ที่ 5
+- ต่อจากสัปดาห์ 4 ทำไฟล์ `WebDesignW5/W05-01-formatting.html`
+- เรียนการจัด layout ด้วย CSS Grid - แบ่งเป็น 3 คอลัมน์สำหรับ card
+- ออกแบบ card component ให้เสร็จสมบูรณ์ พร้อม header, body, code box ที่มี syntax highlighting
+- ฝึกทำ activity checklist ด้วยสีต่าง ๆ และ footer ที่มี 4 column layout
+- เรียนรู้ gradient background และ box-shadow เพื่อให้หน้าดูลึกและมีมิติ
+
+## สัปดาห์ที่ 6
+- ทำไฟล์ `WebDesignW6/W06-01-link_image.html` เรื่อง HTML Link และ Image
+- ใช้ Google Font "Kanit" สำหรับภาษาไทย
+- ออกแบบหน้าเป็น 2 column: ซ้าย main content และขวา sidebar
+- ทำ hero section ที่มี grid layout ระหว่างข้อความกับรูปภาพ
+- เตรียม section สำหรับตัวอย่างลิงก์และการแทรกรูปภาพ
+- เรียนรู้ `object-fit` เพื่อให้รูปภาพแสดงผลสวยงาม
+
