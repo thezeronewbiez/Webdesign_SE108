@@ -252,9 +252,12 @@ nav a {
   border: 1px solid #facc15;
   border-radius: 18px;
   padding: 24px 30px;
-  display: flex;
   gap: 20px;
-  align-items: center;
+  margin: 20px 0;
+}
+.tip-box p{
+  margin: 0;
+  font-size: 16px;
 }
 .tip-bold {
   font-weight: bold;
@@ -265,7 +268,53 @@ nav a {
 }
 
 footer {
-  padding: 20px 24px;
-  text-align: center;
-  color: #475569;
+    background: #0f2f75;
+    color: white;
+    padding: 35px 60px 20px;
+    margin-top: 40px;
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 25px;
+}
+.footer-box h3 {
+    font-size: 20px;
+    margin-bottom: 12px;
+    color: #ffffff;
+}
+
+.footer-box p {
+    font-size: 15px;
+    color: #dbeafe;
+    margin-bottom: 8px;
+}
+
+.footer-box ul {
+    list-style: none;
+}
+
+.footer-box ul li {
+    margin-bottom: 8px;
+}
+
+.footer-box ul li a {
+    color: #dbeafe;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.footer-box ul li a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    padding-top: 15px;
+    text-align: center;
+    font-size: 14px;
+    color: #bfdbfe;
 }
