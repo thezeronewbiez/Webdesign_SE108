@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เกี่ยวกับฉัน</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit&display=swap" rel="stylesheet">
+<style>
+    * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+    }
+    body{
+  font-family: "Kanit", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+    header {
+  background: #003c9e;
+  color: white;
+  align-items: center;
+  justify-items: center;
+  padding: 40px;
+    }
+    ol {
+  background: #001f52;
+  color: white;
+  display: flex;
+  gap: 20px ;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  margin-bottom: 20px;
+    }
+    ul a{
+  text-decoration: none;
+  color: white;
+  padding: 15px;
+    }
+    ul a:hover{
+        background: #ffffff;
+        border-radius: 8px;
+        padding: 15px;
+        color: #001f52;
+        transition: all 0.3s;
+    }
+    main{
+  padding: 50px;
+    }
+    .container-info{
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px 36px;
+  box-shadow: 0 4px 12px #dceeff;
+  min-height: 185px;
+  max-width: 1100px;
+  align-items: center;
+  justify-content: center;
+    }
+    .info{
+  display: grid;
+  grid-template-columns: 0.2fr 1.8fr;
+  gap: 16px;
+    }
+    section{
+        margin: 20px;
+    }
+
+    .image-info img{
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: 5px solid #001f52;
+    object-fit: cover;
+    }
+    .content-card{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+    }
+    .info-main-pre{
+        background-color: #9bbaf0;
+        border-radius: 8px;
+        border-left: rgb(182, 16, 16) solid 5px ;
+        padding: 15px ;
+    }
+ .info-head{
+    color: #001f52;
+    margin-bottom: 20px;
+ }
+ .card-info-sub a{
+    text-decoration: none;
+    color: #001f52;
+ }
+ .info-main-bold{
+    color: chocolate;
+    font-weight: bold;
+ }
+ .card-info{
+    padding: 20px;
+    background-color: rgba(255, 241, 115, 0.884);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 166, 115, 0.884);
+    text-justify: center;
+    text-align: center;
+ }
+ .card-info-head{
+    color: chocolate;
+ }
+.card-info-head.blue{
+    color: rgb(30, 87, 210);
+ }
+ .card-info.blue{
+    background-color: #9bbaf0;
+    border: 1px solid rgba(115, 141, 255, 0.884);
+ }
+    footer{
+  background: #001f52;
+  color: white;
+  align-items: center;
+  justify-items: center;
+  padding: 40px;
+    }
+    footer a {
+        text-decoration: none;
+        color: white;
+    }
+    footer a:hover{
+        color: rgb(196, 137, 12);
+        text-decoration: underline;
+    }
+</style>
+
+</head>
+<body>
+
+<!------------ Header -------------->
+    <header>
+        <div class="Head-info">
+            <h1>นายดลพร เชื้อฮ้อ</h1>
+        </div>
+        <div class="Sub-info">นักศึกษาสาขาวิศวกรรมซอฟต์แวร์ วิทยาศาสตร์และเทคโนโลยี มหาวิทยาลัยราชภัฎนครปฐม</div>
+    </header>
+
+<!-- Nav -->
+    <nav class="nav-list">
+        <ol>
+            <ul><a href="#" class="ulink">เกี่ยวกับฉัน</a></ul>
+            <ul><a href="#" class="ulink">ข้อมูส่วนตัว</a></ul>
+            <ul><a href="#" class="ulink">ความสามารถ</a></ul>
+            <ul><a href="#" class="ulink">ผลงาน</a></ul>
+        </ol>
+    </nav>
+
+<!------------ main -------------->
+    <main class="main-layout">
+<!-- container 1 -->
+    <section class="container-info">
+        <div class="info-head">
+                <h2>เกี่ยวกับฉัน</h2>
+                <hr>
+        </div>
+            <div class="info">
+                <div class="info-left">
+                    <div class="image-info"><img src="./m1.png" alt="example image"></div>
+                </div>
+                
+                <div class="info-right">
+                    <div class="info-head">
+                        <h2>นายดลพร เชื้อฮ้อ</h2>
+                    </div>
+                    <div class="info-main">
+                        <span class="info-main-bold">ชื่อเล่น:</span> <span class="info-main-regular">หยอง</span><br>
+                        <span class="info-main-bold">รหัสนักศึกษา:</span> <span class="info-main-regular">684259010</span><br>
+                        <span class="info-main-bold">สาขาวิชา:</span> <span class="info-main-regular">วิศวกรรมซอฟต์แวร์</span>
+                        <div class="info-main-pre">สวัสดีครับ ผมเป็นนักศึกษาที่สนใจด้านการออกแบบและพัฒนาเว็ปไซต์ เป้าหมายของผมคือการเป็นนักพัฒนาเว็ปไซต์ที่สามารถสร้างผลงาน ที่สวยงาม ใช้งานง่าย และเป็นประโยชน์ต่อผู้ใช้งาน</div>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+<!-- container 2 -->
+    <section class="container-info sub">
+        <div class="info-head">
+            <h2>ข้อมูลส่วนตัว</h2>
+            <hr>
+        </div>
+        
+        <div class="content-card">
+            <div class="card-info">
+                <span class="card-info-head">วันเกิด</span><br>
+                <span class="card-info-sub">31 มกราคม 2550</span>
+            </div>
+            <div class="card-info">
+                <span class="card-info-head">อายุ</span><br>
+                <span class="card-info-sub">19 ปี</span>
+            </div>
+            <div class="card-info blue">
+                <span class="card-info-head blue">Github</span><br>
+                <span class="card-info-sub blue"><a href="www.github.com/thezeronewbiez">github.com/thezeronewbiez</a></span>
+            </div>
+        </div>
+    </section>
+
+    </main>
+<!-- footer -->
+    <footer>
+        <p>@2026 Donlaphon Profile Website. All right reserved.<br></p>
+        <p class="link"><a href="#">กลับไปด้านบน</a></p>
+    </footer>
+</body>
+</html>
