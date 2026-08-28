@@ -1,96 +1,520 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="เว็ปไซต์สำหรับแนะนำการใช้งาน HTML CSS และ WORKSHOP">
-    <title>Web Workshop : 684259010</title>
-    <style>
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0 auto;
-            padding: 20px;
-            max-width: 900px;
-            background-color: #FAFAFA;
-        }
-        h1 {
-            color: #FF9A86;
-        }
-        h2 {
-            color: #f1a991;
-            margin-top: 40px;
-        }
-        pre {
-            font-size: 16px;
-            background-color: #FFF8EC;
-            padding: 15px;
-            border-left: 5px solid #ffc7a6;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-        }
-        a {
-            color: #E87A5D;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="เว็ปไซต์สำหรับแนะนำการใช้งาน HTML CSS และ WORKSHOP">
+<title>Web Workshop : 684259010</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ตัวแปรกลางของเว็บ: แก้สี ขนาดมุม และเงาจากจุดเดียว */
+  :root{
+    --paper:#FBF7F1; /* สีพื้นหลังหลัก */
+    --card:#FFFFFF; /* สีพื้นผิวของกล่องเนื้อหา */
+    --ink:#2B241E; /* สีตัวอักษรหลัก */
+    --muted:#8B7F72; /* สีข้อความรอง */
+    --line:#E9E1D6; /* สีเส้นขอบแบบนุ่ม */
+    --terracotta:#E2704F; /* สีส้มสำหรับจุดเด่นและ hover */
+    --terracotta-dim:#F6DDD1; /* สีส้มอ่อนสำหรับพื้นหลัง */
+    --teal:#2F6F5E; /* สีเขียวสำหรับป้ายและลิงก์สำคัญ */
+    --teal-dim:#DCEAE4; /* สีเขียวอ่อนสำหรับป้าย */
+    --code-bg:#211D19; /* พื้นหลังกล่องโค้ด */
+    --code-ink:#F1E9DD; /* ตัวอักษรในกล่องโค้ด */
+    --code-line:#38322C; /* เส้นขอบภายในกล่องโค้ด */
+    --radius-lg:20px; /* มุมโค้งของกล่องใหญ่ */
+    --radius-md:14px; /* มุมโค้งของกล่องขนาดกลาง */
+    --radius-sm:8px; /* มุมโค้งของกล่องเล็ก */
+    --shadow-soft:0 1px 2px rgba(43,36,30,0.04), 0 8px 24px -12px rgba(43,36,30,0.12); /* เงาบาง */
+    --shadow-lift:0 4px 8px rgba(43,36,30,0.06), 0 16px 32px -16px rgba(43,36,30,0.18); /* เงาเวลายกตัว */
+    --sidebar-w:260px; /* ความกว้างเมนูด้านซ้ายบนจอใหญ่ */
+  }
 
-        .workshop-box {
-        border: 1px solid #E87A5D;
-        padding: 20px;
-        background-color: #ffffff;
-        margin-top: 15px;
-}
-        .workshop-box h3 {
-        color: #f1a991;
-        margin-top: 0;
-        font-family: sans-serif;
-}
-        .workshop-box ul {
-        list-style-type: circle;
-        padding-left: 20px;
-}
-        .workshop-box hr {
-        border: 0;
-        height: 1px;
-        background-color: #ccc;
-        margin: 15px 0;
-}
-        .workshop-box a {
-        color: #FF9A86;
-        text-decoration: none;
-}
-        .workshop-box a:hover {
-        text-decoration: underline;
-}
-    </style>
+  *{box-sizing:border-box;}
+  /* เวลากดลิงก์ไปยังหัวข้อ ให้เลื่อนหน้าแบบนุ่ม ๆ */
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; /* ลบระยะขอบเริ่มต้นของเบราว์เซอร์ */
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    line-height:1.6; /* เพิ่มระยะห่างบรรทัดให้อ่านภาษาไทยง่าย */
+  }
+  ::selection{background:var(--terracotta-dim);color:var(--ink);} /* สีตอนลากเลือกข้อความ */
+  a{color:inherit;} /* ลิงก์ใช้สีตามกล่องแม่ */
+  img{max-width:100%;display:block;} /* รูปไม่ล้นกล่องและไม่เหลือช่องว่างใต้รูป */
+
+  /* โครงหลัก: จอใหญ่แบ่งเป็น sidebar 260px และพื้นที่เนื้อหา */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--sidebar-w) 1fr; /* คอลัมน์ซ้ายคงที่ ขวาขยายตามพื้นที่ */
+    max-width:1240px; /* จำกัดความกว้างไม่ให้บรรทัดยาวเกินไป */
+    margin:0 auto; /* จัด shell ให้อยู่ตรงกลาง */
+  }
+
+  /* แถบด้านบนสำหรับมือถือ ปกติซ่อนไว้และจะแสดงใน media query */
+  .topbar{
+    display:none; /* ใช้เฉพาะเมื่อหน้าจอแคบ */
+    position:sticky; /* แถบยังอยู่ด้านบนขณะเลื่อนหน้า */
+    top:0;
+    z-index:40; /* ให้อยู่เหนือเนื้อหา */
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 20px;
+    background:rgba(251,247,241,0.9); /* โปร่งเล็กน้อยเพื่อเห็นบรรยากาศด้านหลัง */
+    backdrop-filter:blur(10px); /* ทำให้พื้นหลังด้านหลังเบลอ */
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .brand{
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:-0.02em;
+  }
+  .topbar .brand span{color:var(--terracotta);}
+  /* ปุ่มสามขีดของเมนูมือถือ */
+  .menu-btn{
+    width:38px;height:38px;
+    border-radius:10px;
+    border:1px solid var(--line);
+    background:var(--card);
+    display:flex;align-items:center;justify-content:center; /* วางขีดไว้กึ่งกลาง */
+    cursor:pointer;
+    gap:4px;
+    flex-direction:column;
+  }
+  .menu-btn span{
+    display:block;width:16px;height:2px;background:var(--ink);
+    transition:transform .25s ease, opacity .25s ease;
+  }
+  .menu-btn.open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .menu-btn.open span:nth-child(2){opacity:0;}
+  .menu-btn.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  /* Sidebar: เมนูหลักแบบติดหน้าจอสำหรับการนำทางระหว่างหัวข้อ */
+  .sidebar{
+    position:sticky; /* เมนูเลื่อนตามหน้าแต่ไม่หายไป */
+    top:0;
+    align-self:start;
+    height:100vh; /* สูงเท่าหน้าจอ */
+    overflow-y:auto; /* ถ้าเมนูยาว ให้เลื่อนเฉพาะเมนูได้ */
+    padding:32px 20px 32px 28px;
+    border-right:1px solid var(--line);
+    scrollbar-width:thin;
+  }
+  .sidebar-inner .brand{
+    font-family:'JetBrains Mono',monospace;
+    font-size:15px;
+    font-weight:600;
+    letter-spacing:-0.02em;
+    margin-bottom:2px;
+  }
+  .sidebar-inner .brand span{color:var(--terracotta);}
+  .sidebar-inner .brand-sub{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:28px;
+  }
+  .nav-group-label{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:var(--muted);
+    margin:0 0 10px;
+  }
+  .side-nav{list-style:none;margin:0 0 26px;padding:0;}
+  .side-nav li{margin:1px 0;}
+  .side-nav a{
+    display:flex;
+    align-items:baseline;
+    gap:9px;
+    text-decoration:none;
+    font-size:13.5px;
+    color:var(--muted);
+    padding:7px 10px;
+    border-radius:8px;
+    border-left:2px solid transparent;
+    transition:color .18s ease, background .18s ease, border-color .18s ease;
+  }
+  .side-nav a .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:var(--terracotta);
+    flex-shrink:0;
+  }
+  .side-nav a:hover{color:var(--ink);background:var(--card);}
+  .side-nav a.active{
+    color:var(--ink);
+    background:var(--card);
+    border-left-color:var(--terracotta);
+    box-shadow:var(--shadow-soft);
+    font-weight:500;
+  }
+  .side-cta{
+    display:block;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    text-align:center;
+    padding:10px;
+    border-radius:10px;
+    background:var(--teal);
+    color:#fff;
+    text-decoration:none;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .side-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow-lift);}
+
+  /* พื้นที่บทความหลัก เว้นขอบซ้ายขวาและกันพื้นที่ด้านล่าง */
+  main{padding:0 28px 80px;min-width:0;}
+
+  /* ส่วนเปิดหน้า ทำหน้าตาเหมือนหน้าต่างโค้ด */
+  .hero{
+    padding:64px 0 40px;
+  }
+  .window{
+    background:var(--code-bg);
+    border-radius:var(--radius-lg);
+    overflow:hidden; /* ตัดส่วนลูกที่ล้นตามมุมโค้ง */
+    box-shadow:var(--shadow-lift);
+  }
+  /* แถบหัวกล่อง ใช้ซ้ำทั้ง hero และกล่องตัวอย่างโค้ด */
+  .window-bar{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:12px 16px;
+    border-bottom:1px solid var(--code-line);
+  }
+  .dot{width:10px;height:10px;border-radius:50%;} /* จุดวงกลมเลียนแบบปุ่มหน้าต่าง */
+  .dot.r{background:#E2704F;}
+  .dot.y{background:#E0B44F;}
+  .dot.g{background:#3F9E7E;}
+  .window-bar .fname{
+    margin-left:8px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:#B7AB9C;
+  }
+  .window-body{padding:30px 30px 34px;} /* ระยะห่างของเนื้อหาจากขอบกล่อง */
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    color:#E2704F;
+    margin:0 0 14px;
+    letter-spacing:.02em;
+  }
+  .hero h1{
+    font-family:'Fraunces',serif;
+    font-size:clamp(34px,6vw,54px);
+    font-weight:600;
+    color:var(--code-ink);
+    margin:0 0 14px;
+    line-height:1.08;
+    letter-spacing:-0.01em;
+  }
+  .hero p{
+    color:#C9BEAF;
+    max-width:56ch;
+    font-size:15.5px;
+    margin:0 0 22px;
+  }
+  .hero-meta{
+    display:flex;flex-wrap:wrap;gap:10px;
+  }
+  .chip{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;
+    color:#E9E1D3;
+    background:rgba(255,255,255,0.06);
+    border:1px solid var(--code-line);
+    padding:6px 11px;
+    border-radius:999px;
+  }
+
+  /* แต่ละหัวข้อแยกเป็นช่วง ๆ เพื่อให้ไล่อ่านได้เป็นตอน */
+  .topic{
+    padding:56px 0;
+    border-bottom:1px solid var(--line);
+    scroll-margin-top:24px; /* ชดเชยระยะด้านบนเมื่อกระโดดจากลิงก์ */
+  }
+  .topic:last-of-type{border-bottom:none;}
+  /* ชื่อหัวข้อและป้าย tag อยู่ในแถวเดียวกัน */
+  .topic-head{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    margin-bottom:6px;
+  }
+  .topic-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    font-weight:600;
+    color:var(--teal);
+    background:var(--teal-dim);
+    padding:5px 10px;
+    border-radius:7px;
+    white-space:nowrap;
+  }
+  .topic h2{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    font-size:clamp(22px,3vw,29px);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .topic-links{
+    display:flex;flex-wrap:wrap;gap:10px;
+    margin:18px 0 22px;
+  }
+  .wlink{
+    display:inline-flex;
+    align-items:center;
+    gap:7px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--card);
+    border:1px solid var(--line);
+    padding:8px 13px;
+    border-radius:999px;
+    transition:border-color .18s ease, transform .18s ease, box-shadow .18s ease;
+  }
+  .wlink:hover{
+    border-color:var(--terracotta);
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-soft);
+  }
+  .wlink::before{content:"↗";color:var(--terracotta);font-size:11px;}
+
+  /* กล่องตัวอย่าง: ใช้โทนเข้มเพื่อแยก code ออกจากเนื้อหาปกติอย่างชัดเจน */
+  .code-card{
+    background:var(--code-bg);
+    border-radius:var(--radius-md);
+    overflow:hidden;
+    box-shadow:var(--shadow-soft);
+    position:relative;
+    border-top:3px solid var(--terracotta); /* แถบสีด้านบนช่วยบอกขอบเขตของ code */
+  }
+  /* สลับสีแถบด้านบนของกล่อง code ให้แต่ละหัวข้อดูแยกจากกัน */
+  .topic:nth-of-type(even) .code-card{border-top-color:var(--teal);}
+  .code-card .window-bar{
+    padding:10px 14px;
+    background:rgba(0,0,0,0.16); /* หัวกล่องเข้มกว่าส่วน code เล็กน้อย */
+  }
+  .code-card .fname{color:#D7C8B5;} /* ชื่อไฟล์ให้เด่นบนหัวกล่อง */
+  .code-card pre{
+    margin:0;
+    padding:22px 24px 26px;
+    color:var(--code-ink);
+    background:var(--code-bg); /* พื้นหลัง code ที่ต่างจากพื้นหน้าเว็บ */
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    line-height:1.7;
+    white-space:pre-wrap;
+    word-wrap:break-word;
+    overflow-x:auto;
+  }
+  /* สีตอนลากเลือก code ช่วยให้ข้อความที่เลือกมองเห็นชัด */
+  .code-card pre::selection{background:#7B4130;color:#FFF8EF;}
+  /* แยกสี syntax ตามภาพตัวอย่าง: แท็กแดง, attribute ฟ้า, value สีอ่อน */
+  .code-tag{color:#FF5C5C;}
+  .code-attr{color:#4DB8FF;}
+  .code-value{color:#F0E8DC;}
+  .code-note{color:#8FA6B8;font-style:italic;}
+  /* ส่วน Workshop: รวมลิงก์งานที่ทำไว้เป็นตารางการ์ด */
+  .workshop{
+    padding:60px 0 40px; /* เว้นระยะก่อนและหลังส่วนนี้ */
+  }
+  .workshop-box{
+    background:var(--card); /* แยก workshop ออกจากพื้นหลังหลัก */
+    border:1px solid var(--line); /* ทำขอบบาง ๆ ให้เห็นขอบเขต */
+    border-radius:var(--radius-lg); /* ใช้มุมโค้งชุดเดียวกับกล่องใหญ่ */
+    padding:34px 32px; /* ระยะห่างระหว่างเนื้อหากับขอบกล่อง */
+    box-shadow:var(--shadow-soft); /* เพิ่มมิติแบบไม่หนักเกินไป */
+  }
+  .workshop-box h3{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    font-weight:600;
+    margin:0 0 4px;
+  }
+  .workshop-box .sub{
+    color:var(--muted);
+    font-size:13.5px;
+    margin:0 0 22px;
+  }
+  .wgrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); /* การ์ดกว้างอย่างน้อย 220px และขึ้นแถวใหม่เอง */
+    gap:12px; /* ช่องว่างระหว่างการ์ด */
+    margin-bottom:24px; /* แยกการ์ดออกจากลิงก์ด้านล่าง */
+  }
+  .wcard{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:var(--radius-sm);
+    padding:14px 15px;
+    transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  /* ตอนเอาเมาส์วาง การ์ดขยับขึ้นเล็กน้อยเพื่อบอกว่ากดได้ */
+  .wcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);border-color:var(--terracotta);}
+  .wcard .num{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;
+    color:var(--terracotta);
+    background:var(--terracotta-dim);
+    border-radius:6px;
+    padding:3px 6px;
+    flex-shrink:0;
+  }
+  .wcard .label{font-size:13.5px;font-weight:500;line-height:1.4;}
+  .learn-more{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    text-decoration:none;
+    color:var(--teal);
+    border-bottom:1px solid transparent;
+    transition:border-color .18s ease;
+  }
+  .learn-more:hover{border-color:var(--teal);}
+
+  /* ลิงก์ย้อนกลับด้านบนของแต่ละหัวข้อ */
+  .back-top{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    margin-top:36px;
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    text-decoration:none;
+    color:var(--muted);
+    transition:color .18s ease;
+  }
+  .back-top:hover{color:var(--terracotta);}
+
+  /* ข้อความท้ายหน้า ใช้ตัวอักษรเล็กและสีรอง */
+  footer{
+    padding:30px 0 60px;
+    color:var(--muted);
+    font-size:12.5px;
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  /* Responsive: เมื่อจอเล็ก เปลี่ยนจากเมนูข้างเป็นแถบด้านบน */
+  @media (max-width:960px){
+    .shell{grid-template-columns:1fr;} /* ยกเลิกคอลัมน์ sidebar */
+    .topbar{display:flex;} /* แสดงแถบด้านบนบนมือถือ */
+    .sidebar{
+      position:fixed;
+      top:0;left:0;
+      height:100vh;
+      width:min(300px,84vw);
+      background:var(--paper);
+      transform:translateX(-100%); /* ซ่อนเมนูออกไปทางซ้าย */
+      transition:transform .28s ease; /* ทำให้การเลื่อนเข้าออกนุ่มนวล */
+      z-index:50;
+      box-shadow:var(--shadow-lift);
+    }
+    .sidebar.open{transform:translateX(0);}
+    /* พื้นทึบโปร่งใสด้านหลังเมนู ช่วยแยกเมนูออกจากเนื้อหา */
+    .scrim{
+      display:none;
+      position:fixed;inset:0;
+      background:rgba(43,36,30,0.35);
+      z-index:45;
+    }
+    .scrim.show{display:block;}
+    main{padding:0 18px 60px;} /* ลดขอบเนื้อหาให้เหมาะกับหน้าจอแคบ */
+    .hero{padding:32px 0 28px;} /* ลดช่องว่างส่วนเปิดหน้า */
+    .window-body{padding:22px 20px 26px;} /* ลด padding ในกล่อง hero */
+  }
+  @media (max-width:520px){
+    .topic{padding:40px 0;} /* ลดระยะห่างของหัวข้อบนมือถือขนาดเล็ก */
+    .code-card pre{font-size:12px;padding:18px 16px 20px;} /* ลดขนาดและขอบของข้อความโค้ด */
+    .workshop-box{padding:26px 20px;} /* ให้กล่อง workshop มีพื้นที่อ่านมากขึ้น */
+  }
+</style>
 </head>
 <body>
 
-    <h1 id="top">HTML Tutorial</h1>
-    <p>Welcome to the HTML tutorial. Click on the topics below to start learning:</p>
-    
-    <h2>Topics</h2>
-    <ul>
-        <li><a href="#introduction">Introduction to HTML</a></li>
-        <li><a href="#heading">Heading</a></li>
-        <li><a href="#paragraph">Paragraph</a></li>
-        <li><a href="#formatting">Text Formatting</a></li>
-        <li><a href="#lists">Lists (Ordered and Unordered)</a></li>
-        <li><a href="#links">Creating Links</a></li>
-        <li><a href="#images">Adding Images</a></li>
-        <li><a href="#tables">Creating Tables</a></li>
-        <li><a href="#forms">HTML Forms</a></li>
-        <li><a href="#multimedia">Embedding Multimedia (Audio & Video)</a></li>
-        <li><a href="#semantic">Semantic HTML</a></li>
-        <li><a href="#workshop">Workshop</a></li>
-    </ul>
-    <hr>
+<div class="topbar">
+  <div class="brand"><span>&lt;</span>HTML Tutorial<span>/&gt;</span></div>
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+<div class="scrim" id="scrim"></div>
 
-    <h2 id="introduction">Introduction to HTML</h2>
-<pre>
-- HTML stands for Hyper Text Markup Language
+<div class="shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-inner">
+      <div class="brand"><span>&lt;</span>HTML Tutorial<span>/&gt;</span></div>
+      <div class="brand-sub">684259010</div>
+
+      <p class="nav-group-label">Contents</p>
+      <ul class="side-nav">
+        <li><a href="#introduction"><span class="tag">01</span>Introduction</a></li>
+        <li><a href="#heading"><span class="tag">h1–h6</span>Heading</a></li>
+        <li><a href="#paragraph"><span class="tag">p</span>Paragraph</a></li>
+        <li><a href="#formatting"><span class="tag">a</span>Text Formatting</a></li>
+        <li><a href="#lists"><span class="tag">ul/ol</span>Lists</a></li>
+        <li><a href="#links"><span class="tag">a</span>Creating Links</a></li>
+        <li><a href="#images"><span class="tag">img</span>Adding Images</a></li>
+        <li><a href="#tables"><span class="tag">table</span>Creating Tables</a></li>
+        <li><a href="#forms"><span class="tag">form</span>HTML Forms</a></li>
+        <li><a href="#multimedia"><span class="tag">a/v</span>Multimedia</a></li>
+        <li><a href="#semantic"><span class="tag">sem</span>Semantic HTML</a></li>
+        <li><a href="#workshop"><span class="tag">04</span>Workshop</a></li>
+      </ul>
+
+      <a class="side-cta" href="https://www.w3schools.com/html/" target="_blank" rel="noopener">learn more →</a>
+    </div>
+  </aside>
+
+  <main>
+    <section class="hero" id="top">
+      <div class="window">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="fname">index.html</span>
+        </div>
+        <div class="window-body">
+          <p class="eyebrow">&lt;!-- 684259010 --&gt;</p>
+          <h1>HTML Tutorial</h1>
+          <p>เว็บไซต์สำหรับแนะนำการใช้งาน HTML, CSS และรวบรวม Workshop ระหว่างเรียน — เลือกหัวข้อจากเมนูด้านซ้ายเพื่อเริ่มต้น</p>
+          <div class="hero-meta">
+            <span class="chip">Web Design</span>
+            <span class="chip">HTML / CSS</span>
+            <span class="chip">12 Topics</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="topic" id="introduction">
+      <div class="topic-head">
+        <span class="topic-tag">intro</span>
+        <h2>Introduction to HTML</h2>
+      </div>
+      <div class="code-card">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="fname">about.txt</span>
+        </div>
+        <pre data-code>- HTML stands for Hyper Text Markup Language
 - HTML is the standard markup language for creating Web pages
 - HTML describes the structure of a Web page
 - HTML consists of a series of elements
@@ -98,55 +522,86 @@
 - HTML elements are represented by tags
 - HTML tags label pieces of content such as "heading", "paragraph", "table", and so on
 - Browsers do not display the HTML tags, but use them to render the content of the page
-- HTML can embed programs written in a scripting language such as JavaScript, which affects the behavior and content of web pages 
-- HTML is not a programming language, but a markup language
-</pre>
-    <a href="#top">Back To Top</a>
+- HTML can embed programs written in a scripting language such as JavaScript, which affects the behavior and content of web pages
+- HTML is not a programming language, but a markup language</pre>
+      </div>
+      <a class="back-top" href="#top">↑ Back to top</a>
+    </section>
 
-    <h2 id="heading">Heading</h2>
-    <a href="WebDesignW4/W03-01-heading.html">workshop 01</a>
-    <a href="WebDesignW4/W03-02-heading-จากห้อง 51.html"> | workshop 02</a>
-<pre>
- คำอธิบาย:
-- &lt;h1&gt;: Heading 1
-- &lt;h2&gt;: Heading 2
-- &lt;h3&gt;: Heading 3
-- &lt;h4&gt;: Heading 4
-- &lt;h5&gt;: Heading 5
-- &lt;h6&gt;: Heading 6
- <img src="image.jpg" alt="A description of the image">
-</pre>
-    <a href="#top">Back To Top</a>
+    <section class="topic" id="heading">
+      <div class="topic-head">
+        <span class="topic-tag">h1–h6</span>
+        <h2>Heading</h2>
+      </div>
+      <div class="topic-links">
+        <a class="wlink" href="WebDesignW4/W03-01-heading.html">workshop 01</a>
+        <a class="wlink" href="WebDesignW4/W03-02-heading-จากห้อง 51.html">workshop 02</a>
+      </div>
+      <div class="code-card">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="fname">heading.html</span>
+        </div>
+        <pre data-code>คำอธิบาย:
+      - <span class="code-tag">&lt;h1&gt;</span>: Heading 1
+      - <span class="code-tag">&lt;h2&gt;</span>: Heading 2
+      - <span class="code-tag">&lt;h3&gt;</span>: Heading 3
+      - <span class="code-tag">&lt;h4&gt;</span>: Heading 4
+      - <span class="code-tag">&lt;h5&gt;</span>: Heading 5
+      - <span class="code-tag">&lt;h6&gt;</span>: Heading 6
+      <span class="code-tag">&lt;img</span> <span class="code-attr">src</span>=<span class="code-value">"image.jpg"</span> <span class="code-attr">alt</span>=<span class="code-value">"A description of the image"</span><span class="code-tag">&gt;</span></pre>
+      </div>
+      <a class="back-top" href="#top">↑ Back to top</a>
+    </section>
 
-    <h2 id="paragraph">Paragraph</h2>
-<pre>
-- &lt;h1&gt; to &lt;h6&gt;: Headings
-- &lt;p&gt;: Paragraph
-- &lt;pre&gt;: Preformatted text
-- &lt;b&gt;: Bold text
-- &lt;strong&gt;: Important text
-- &lt;i&gt;: Italic text
-- &lt;em&gt;: Emphasized text
-- &lt;u&gt;: Underline text
-- &lt;ins&gt;: Inserted text
-- &lt;del&gt;: Deleted text
-- &lt;s&gt;: Strikethrough text
-- &lt;strike&gt;: Strikethrough text
-- &lt;small&gt;: Smaller text
-- &lt;big&gt;: Big text
-- &lt;mark&gt;: Marked/highlighted text
-- &lt;sub&gt;: Subscript text
-- &lt;sup&gt;: Superscript text
-- &lt;blockquote&gt;: Block quotation
-- &lt;q&gt;: Inline quotation
-- &lt;code&gt;: Code snippet
-</pre>
-    <a href="#top">Back To Top</a>
+    <section class="topic" id="paragraph">
+      <div class="topic-head">
+        <span class="topic-tag">p</span>
+        <h2>Paragraph</h2>
+      </div>
+      <div class="code-card">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="fname">paragraph.html</span>
+        </div>
+        <pre data-code>- <span class="code-tag">&lt;h1&gt;</span> to <span class="code-tag">&lt;h6&gt;</span>: Headings
+      - <span class="code-tag">&lt;p&gt;</span>: Paragraph
+      - <span class="code-tag">&lt;pre&gt;</span>: Preformatted text
+- <span class="code-tag">&lt;b&gt;</span>: Bold text
+- <span class="code-tag">&lt;strong&gt;</span>: Important text
+- <span class="code-tag">&lt;i&gt;</span>: Italic text
+- <span class="code-tag">&lt;em&gt;</span>: Emphasized text
+- <span class="code-tag">&lt;u&gt;</span>: Underline text
+- <span class="code-tag">&lt;ins&gt;</span>: Inserted text
+- <span class="code-tag">&lt;del&gt;</span>: Deleted text
+- <span class="code-tag">&lt;s&gt;</span>: Strikethrough text
+- <span class="code-tag">&lt;strike&gt;</span>: Strikethrough text
+- <span class="code-tag">&lt;small&gt;</span>: Smaller text
+- <span class="code-tag">&lt;big&gt;</span>: Big text
+- <span class="code-tag">&lt;mark&gt;</span>: Marked/highlighted text
+- <span class="code-tag">&lt;sub&gt;</span>: Subscript text
+- <span class="code-tag">&lt;sup&gt;</span>: Superscript text
+- <span class="code-tag">&lt;blockquote&gt;</span>: Block quotation
+- <span class="code-tag">&lt;q&gt;</span>: Inline quotation
+- <span class="code-tag">&lt;code&gt;</span>: Code snippet</pre>
+      </div>
+      <a class="back-top" href="#top">↑ Back to top</a>
+    </section>
 
-    <h2 id="formatting">Text Formatting</h2>
-    <a href="../WebDesignW5/W05-01-formatting.html">workshop 03</a>
-<pre>
-- &lt;a href="url" target=""&gt;Link text&lt;/a&gt;
+    <section class="topic" id="formatting">
+      <div class="topic-head">
+        <span class="topic-tag">a</span>
+        <h2>Text Formatting</h2>
+      </div>
+      <div class="topic-links">
+        <a class="wlink" href="../WebDesignW5/W05-01-formatting.html">workshop 03</a>
+      </div>
+      <div class="code-card">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="fname">formatting.html</span>
+        </div>
+        <pre data-code>- <span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-value">"url"</span> <span class="code-attr">target</span>=<span class="code-value">""</span><span class="code-tag">&gt;Link text&lt;/a&gt;</span>
 - The href attribute specifies the URL of the page the link goes to
 - The target attribute specifies where to open the linked document
 - _self: Open the linked document in the same window/tab
@@ -157,65 +612,83 @@
 - Anchor links:
 - Use the href attribute with the # symbol to link to a specific part of the page
 - Use the id attribute to define the section to link to
-- Example: &lt;a href="#section"&gt;Go to Section&lt;/a&gt;
-- Example: &lt;h3 id="section"&gt;This is the Section&lt;/h3&gt;
+- Example: <span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-value">"#section"</span><span class="code-tag">&gt;Go to Section&lt;/a&gt;</span>
+- Example: <span class="code-tag">&lt;h3</span> <span class="code-attr">id</span>=<span class="code-value">"section"</span><span class="code-tag">&gt;This is the Section&lt;/h3&gt;</span>
 - Email links:
 - Use the mailto: prefix to create an email link
-- Example: &lt;a href="mailto:support@example.com"&gt;email us&lt;/a&gt;
+- Example: <span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-value">"mailto:support@example.com"</span><span class="code-tag">&gt;email us&lt;/a&gt;</span>
 - Download links:
 - Use the download attribute to create a download link
-- Example: &lt;a href="file.txt" download&gt;Download Text File&lt;/a&gt;
-</pre>
-    <a href="#top">Back To Top</a>
+- Example: <span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-value">"file.txt"</span> <span class="code-attr">download</span><span class="code-tag">&gt;Download Text File&lt;/a&gt;</span></pre>
+      </div>
+      <a class="back-top" href="#top">↑ Back to top</a>
+    </section>
 
-    <h2 id="lists">Lists (Ordered and Unordered)</h2>
-<pre>
-HTML lists are defined with the &lt;ul&gt;, &lt;ol&gt;, and &lt;li&gt; tags...
-- &lt;ul&gt;: Unordered list
-- &lt;ol&gt;: Ordered list
-- &lt;li&gt;: List item
+    <section class="topic" id="lists">
+      <div class="topic-head">
+        <span class="topic-tag">ul / ol</span>
+        <h2>Lists (Ordered and Unordered)</h2>
+      </div>
+      <div class="code-card">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="fname">lists.html</span>
+        </div>
+        <pre data-code>HTML lists are defined with the <span class="code-tag">&lt;ul&gt;</span>, <span class="code-tag">&lt;ol&gt;</span>, and <span class="code-tag">&lt;li&gt;</span> tags...
+      - <span class="code-tag">&lt;ul&gt;</span>: Unordered list
+      - <span class="code-tag">&lt;ol&gt;</span>: Ordered list
+      - <span class="code-tag">&lt;li&gt;</span>: List item
 - Unordered list:
-- Use the &lt;ul&gt; tag to create an unordered list
-- Use the &lt;li&gt; tag to create each list item
+- Use the <span class="code-tag">&lt;ul&gt;</span> tag to create an unordered list
+- Use the <span class="code-tag">&lt;li&gt;</span> tag to create each list item
 - Example:
-&lt;ul&gt;
-&lt;li&gt;Coffee&lt;/li&gt;
-&lt;li&gt;Tea&lt;/li&gt;
-&lt;li&gt;Milk&lt;/li&gt;
-&lt;/ul&gt;
+<span class="code-tag">&lt;ul&gt;</span>
+<span class="code-tag">&lt;li&gt;</span>Coffee<span class="code-tag">&lt;/li&gt;</span>
+<span class="code-tag">&lt;li&gt;</span>Tea<span class="code-tag">&lt;/li&gt;</span>
+<span class="code-tag">&lt;li&gt;</span>Milk<span class="code-tag">&lt;/li&gt;</span>
+<span class="code-tag">&lt;/ul&gt;</span>
 - Ordered list:
-- Use the &lt;ol&gt; tag to create an ordered list
-- Use the &lt;li&gt; tag to create each list item
+- Use the <span class="code-tag">&lt;ol&gt;</span> tag to create an ordered list
+- Use the <span class="code-tag">&lt;li&gt;</span> tag to create each list item
 - Example:
-&lt;ol&gt;
-&lt;li&gt;Coffee&lt;/li&gt;
-&lt;li&gt;Tea&lt;/li&gt;
-&lt;li&gt;Milk&lt;/li&gt;
-&lt;/ol&gt;
+<span class="code-tag">&lt;ol&gt;</span>
+<span class="code-tag">&lt;li&gt;</span>Coffee<span class="code-tag">&lt;/li&gt;</span>
+<span class="code-tag">&lt;li&gt;</span>Tea<span class="code-tag">&lt;/li&gt;</span>
+<span class="code-tag">&lt;li&gt;</span>Milk<span class="code-tag">&lt;/li&gt;</span>
+<span class="code-tag">&lt;/ol&gt;</span>
 - List style types:
 - Use the list-style-type property to define the style of the list
-- Example: &lt;ul style="list-style-type: disc;"&gt;
-- Example: &lt;ul style="list-style-type: circle;"&gt;
-- Example: &lt;ul style="list-style-type: square;"&gt;
-- Example: &lt;ul style="list-style-type: none;"&gt;
-- Example: &lt;ol type="1"&gt;
-- Example: &lt;ol type="A"&gt;
-- Example: &lt;ol type="a"&gt;
-- Example: &lt;ol type="I"&gt;
-- Example: &lt;ol type="i"&gt;
-- Example: &lt;ol type="A" start="3"&gt;
-- Example: &lt;ol type="1" start="3"&gt;
+- Example: <span class="code-tag">&lt;ul</span> <span class="code-attr">style</span>=<span class="code-value">"list-style-type: disc;"</span><span class="code-tag">&gt;</span>
+- Example: <span class="code-tag">&lt;ul</span> <span class="code-attr">style</span>=<span class="code-value">"list-style-type: circle;"</span><span class="code-tag">&gt;</span>
+- Example: <span class="code-tag">&lt;ul</span> <span class="code-attr">style</span>=<span class="code-value">"list-style-type: square;"</span><span class="code-tag">&gt;</span>
+- Example: <span class="code-tag">&lt;ul</span> <span class="code-attr">style</span>=<span class="code-value">"list-style-type: none;"</span><span class="code-tag">&gt;</span>
+- Example: <span class="code-tag">&lt;ol</span> <span class="code-attr">type</span>=<span class="code-value">"1"</span><span class="code-tag">&gt;</span>
+- Example: <span class="code-tag">&lt;ol</span> <span class="code-attr">type</span>=<span class="code-value">"A"</span><span class="code-tag">&gt;</span>
+- Example: <span class="code-tag">&lt;ol</span> <span class="code-attr">type</span>=<span class="code-value">"a"</span><span class="code-tag">&gt;</span>
+- Example: <span class="code-tag">&lt;ol</span> <span class="code-attr">type</span>=<span class="code-value">"I"</span><span class="code-tag">&gt;</span>
+- Example: <span class="code-tag">&lt;ol</span> <span class="code-attr">type</span>=<span class="code-value">"i"</span><span class="code-tag">&gt;</span>
+- Example: <span class="code-tag">&lt;ol</span> <span class="code-attr">type</span>=<span class="code-value">"A"</span> <span class="code-attr">start</span>=<span class="code-value">"3"</span><span class="code-tag">&gt;</span>
+- Example: <span class="code-tag">&lt;ol</span> <span class="code-attr">type</span>=<span class="code-value">"1"</span> <span class="code-attr">start</span>=<span class="code-value">"3"</span><span class="code-tag">&gt;</span>
 - Example: &lt;ol style="list-style-type: decimal;"&gt;
 - Example: &lt;ol style="list-style-type: upper-alpha;"&gt;
 - Example: &lt;ol style="list-style-type: lower-alpha;"&gt;
 - Example: &lt;ol style="list-style-type: upper-roman;"&gt;
-- Example: &lt;ol style="list-style-type: lower-roman;"&gt;
-</pre>
-    <a href="#top">Back To Top</a>
+- Example: &lt;ol style="list-style-type: lower-roman;"&gt;</pre>
+      </div>
+      <a class="back-top" href="#top">↑ Back to top</a>
+    </section>
 
-    <h2 id="links">Creating Links</h2>
-<pre>
-- &lt;a href="url" target=""&gt;Link text&lt;/a&gt;
+    <section class="topic" id="links">
+      <div class="topic-head">
+        <span class="topic-tag">a</span>
+        <h2>Creating Links</h2>
+      </div>
+      <div class="code-card">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="fname">links.html</span>
+        </div>
+        <pre data-code>- &lt;a href="url" target=""&gt;Link text&lt;/a&gt;
 - The href attribute specifies the URL of the page the link goes to
 - The target attribute specifies where to open the linked document
 - _self: Open the linked document in the same window/tab
@@ -233,139 +706,208 @@ HTML lists are defined with the &lt;ul&gt;, &lt;ol&gt;, and &lt;li&gt; tags...
 - Example: &lt;a href="mailto:support@example.com"&gt;email us&lt;/a&gt;
 - Download links:
 - Use the download attribute to create a download link
-- Example: &lt;a href="file.txt" download&gt;Download Text File&lt;/a&gt;
-</pre>
-    <a href="#top">Back To Top</a>
+- Example: &lt;a href="file.txt" download&gt;Download Text File&lt;/a&gt;</pre>
+      </div>
+      <a class="back-top" href="#top">↑ Back to top</a>
+    </section>
 
-    <h2 id="images">Adding Images</h2>
-    <a href="../WebDesignW8/W08-01-link_image.html">workshop 04 : Link and Image</a>
-<pre>
-- &lt;img src="url" alt="description"&gt;
+    <section class="topic" id="images">
+      <div class="topic-head">
+        <span class="topic-tag">img</span>
+        <h2>Adding Images</h2>
+      </div>
+      <div class="topic-links">
+        <a class="wlink" href="../WebDesignW8/W08-01-link_image.html">workshop 04 : Link and Image</a>
+      </div>
+      <div class="code-card">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="fname">images.html</span>
+        </div>
+        <pre data-code>- <span class="code-tag">&lt;img</span> <span class="code-attr">src</span>=<span class="code-value">"url"</span> <span class="code-attr">alt</span>=<span class="code-value">"description"</span><span class="code-tag">&gt;</span>
 - The src attribute specifies the URL of the image
 - The alt attribute provides a description of the image
 - The width and height attributes provide the size of the image
-- Example: &lt;img src="image.jpg" alt="description of image"&gt;
-- Example: &lt;img src="image.jpg" alt="description of image" width="300" height="200"&gt;
+- Example: <span class="code-tag">&lt;img</span> <span class="code-attr">src</span>=<span class="code-value">"image.jpg"</span> <span class="code-attr">alt</span>=<span class="code-value">"description of image"</span><span class="code-tag">&gt;</span>
+- Example: <span class="code-tag">&lt;img</span> <span class="code-attr">src</span>=<span class="code-value">"image.jpg"</span> <span class="code-attr">alt</span>=<span class="code-value">"description of image"</span> <span class="code-attr">width</span>=<span class="code-value">"300"</span> <span class="code-attr">height</span>=<span class="code-value">"200"</span><span class="code-tag">&gt;</span>
 - Image alignment:
 - Use the align attribute to specify the alignment of an image
-- Example: &lt;img src="image.jpg" alt="description" align="left"&gt;
-- Example: &lt;img src="image.jpg" alt="description" align="right"&gt;
+- Example: <span class="code-tag">&lt;img</span> <span class="code-attr">src</span>=<span class="code-value">"image.jpg"</span> <span class="code-attr">alt</span>=<span class="code-value">"description"</span> <span class="code-attr">align</span>=<span class="code-value">"left"</span><span class="code-tag">&gt;</span>
+- Example: <span class="code-tag">&lt;img</span> <span class="code-attr">src</span>=<span class="code-value">"image.jpg"</span> <span class="code-attr">alt</span>=<span class="code-value">"description"</span> <span class="code-attr">align</span>=<span class="code-value">"right"</span><span class="code-tag">&gt;</span>
 - Image border:
 - Use the border attribute to add a border around an image
-- Example: &lt;img src="image.jpg" alt="description" border="1"&gt;
+- Example: <span class="code-tag">&lt;img</span> <span class="code-attr">src</span>=<span class="code-value">"image.jpg"</span> <span class="code-attr">alt</span>=<span class="code-value">"description"</span> <span class="code-attr">border</span>=<span class="code-value">"1"</span><span class="code-tag">&gt;</span>
 - Image link:
-- Use the &lt;a&gt; tag to create a link around an image
-- Example: &lt;a href="url"&gt;&lt;img src="image.jpg" alt="description"&gt;&lt;/a&gt;
+- Use the <span class="code-tag">&lt;a&gt;</span> tag to create a link around an image
+- Example: <span class="code-tag">&lt;a</span> <span class="code-attr">href</span>=<span class="code-value">"url"</span><span class="code-tag">&gt;&lt;img</span> <span class="code-attr">src</span>=<span class="code-value">"image.jpg"</span> <span class="code-attr">alt</span>=<span class="code-value">"description"</span><span class="code-tag">&gt;&lt;/a&gt;</span>
 - Image gallery:
-- Use the &lt;div&gt; tag to create an image gallery
-- Use the &lt;img&gt; tag to display each image
+- Use the <span class="code-tag">&lt;div&gt;</span> tag to create an image gallery
+- Use the <span class="code-tag">&lt;img&gt;</span> tag to display each image
 - Example:
-&lt;div class="gallery"&gt;
-&lt;img src="image1.jpg" alt="Image 1"&gt;
-&lt;img src="image2.jpg" alt="Image 2"&gt;
-&lt;img src="image3.jpg" alt="Image 3"&gt;
-&lt;/div>
+<span class="code-tag">&lt;div</span> <span class="code-attr">class</span>=<span class="code-value">"gallery"</span><span class="code-tag">&gt;</span>
+<span class="code-tag">&lt;img</span> <span class="code-attr">src</span>=<span class="code-value">"image1.jpg"</span> <span class="code-attr">alt</span>=<span class="code-value">"Image 1"</span><span class="code-tag">&gt;</span>
+<span class="code-tag">&lt;img</span> <span class="code-attr">src</span>=<span class="code-value">"image2.jpg"</span> <span class="code-attr">alt</span>=<span class="code-value">"Image 2"</span><span class="code-tag">&gt;</span>
+<span class="code-tag">&lt;img</span> <span class="code-attr">src</span>=<span class="code-value">"image3.jpg"</span> <span class="code-attr">alt</span>=<span class="code-value">"Image 3"</span><span class="code-tag">&gt;</span>
+<span class="code-tag">&lt;/div&gt;</span>
 - flex box:
 - Use the display: flex; property to create a flex container
 - Use the gap property to create space between flex items
 - Example:
 .gallery {
-display: flex;
-gap: 10px;
+  display: flex;
+  gap: 10px;
 }
 .gallery img {
-width: 150px;
-height: 150px;
-object-fit: cover;
-}
-</pre>
-    <a href="#top">Back To Top</a>
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}</pre>
+      </div>
+      <a class="back-top" href="#top">↑ Back to top</a>
+    </section>
 
-    <h2 id="tables">Creating Tables</h2>
-<pre>
-- &lt;table&gt;: Table
-- &lt;tr&gt;: Table row
-- &lt;th&gt;: Table header
-- &lt;td&gt;: Table data/cell
-</pre>
-    <a href="#top">Back To Top</a>
+    <section class="topic" id="tables">
+      <div class="topic-head">
+        <span class="topic-tag">table</span>
+        <h2>Creating Tables</h2>
+      </div>
+      <div class="code-card">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="fname">tables.html</span>
+        </div>
+        <pre data-code>- <span class="code-tag">&lt;table&gt;</span>: Table
+      - <span class="code-tag">&lt;tr&gt;</span>: Table row
+      - <span class="code-tag">&lt;th&gt;</span>: Table header
+      - <span class="code-tag">&lt;td&gt;</span>: Table data/cell</pre>
+      </div>
+      <a class="back-top" href="#top">↑ Back to top</a>
+    </section>
 
-    <h2 id="forms">HTML Forms</h2>
-<pre>
-หัวข้อเกี่ยวกับฟอร์ม
+    <section class="topic" id="forms">
+      <div class="topic-head">
+        <span class="topic-tag">form</span>
+        <h2>HTML Forms</h2>
+      </div>
+      <div class="code-card">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="fname">forms.html</span>
+        </div>
+        <pre data-code><span class="code-note">หัวข้อเกี่ยวกับฟอร์ม</span>
 1. โครงสร้างพื้นฐานของฟอร์ม
-- &lt;form&gt;: ใชเป็นตัวครอบข้อมูลในฟอร์ม
+- <span class="code-tag">&lt;form&gt;</span>: ใชเป็นตัวครอบข้อมูลในฟอร์ม
 - action และ method (GET/POST): การกําหนดปลายทางและวิธีส่งข้อมูล
 2. ชนิดของอินพุต (Input Types)
-- &lt;input&gt;: ชนิดต่าง ๆ เช่น text, password, email, number, radio, checkbox, date, file
-- &lt;textarea&gt;: ช่องข้อความขนาดใหญ่
-- &lt;select&gt; และ &lt;option&gt;: เมนูแบบเลื่อนลง
-- &lt;datalist&gt;: รายการตัวเลือกที่ก่าหนดไว้ล่วงหน้า - &lt;optgroup&gt;: กลุ่มตัวเลือก
-- &lt;fieldset&gt; และ &lt;legend&gt;: กลุ่มข้อมูลที่เกี่ยวข้อง
+- <span class="code-tag">&lt;input&gt;</span>: ชนิดต่าง ๆ เช่น text, password, email, number, radio, checkbox, date, file
+- <span class="code-tag">&lt;textarea&gt;</span>: ช่องข้อความขนาดใหญ่
+- <span class="code-tag">&lt;select&gt;</span> และ <span class="code-tag">&lt;option&gt;</span>: เมนูแบบเลื่อนลง
+- <span class="code-tag">&lt;datalist&gt;</span>: รายการตัวเลือกที่ก่าหนดไว้ล่วงหน้า
+- <span class="code-tag">&lt;optgroup&gt;</span>: กลุ่มตัวเลือก
+- <span class="code-tag">&lt;fieldset&gt;</span> และ <span class="code-tag">&lt;legend&gt;</span>: กลุ่มข้อมูลที่เกี่ยวข้อง
 3. ปุ่มในฟอรัม
-- &lt;button&gt;: ปุมทั่วไป
-- &lt;input type="submit"&gt; และ &lt;input type="reset"&gt;: ปุ่มส่งและล้างข้อมูล - &lt;input type="button"&gt;: ปุ้มทั่วไป
-- &lt;input type="image"&gt;: ปุ่มรูปภาพ
-- &lt;input type="file"&gt;: ปุ่มอัพโหลดไฟล์
+- <span class="code-tag">&lt;button&gt;</span>: ปุมทั่วไป
+- <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-value">"submit"</span><span class="code-tag">&gt;</span> และ <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-value">"reset"</span><span class="code-tag">&gt;</span>: ปุ่มส่งและล้างข้อมูล
+- <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-value">"button"</span><span class="code-tag">&gt;</span>: ปุ้มทั่วไป
+- <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-value">"image"</span><span class="code-tag">&gt;</span>: ปุ่มรูปภาพ
+- <span class="code-tag">&lt;input</span> <span class="code-attr">type</span>=<span class="code-value">"file"</span><span class="code-tag">&gt;</span>: ปุ่มอัพโหลดไฟล์
 4. การจัดการป้ายกํากับ (Labels)
-- &lt;label&gt;: เพื่อเชื่อมกับ &lt;input&gt; (ช่วยเพิ่มการเข้าถึง) - for: ระบุ id ของอินพุตที่เกี่ยวข้อง
+- <span class="code-tag">&lt;label&gt;</span>: เพื่อเชื่อมกับ <span class="code-tag">&lt;input&gt;</span> (ช่วยเพิ่มการเข้าถึง)
+- for: ระบุ id ของอินพุตที่เกี่ยวข้อง
 5. การตรวจสอบข้อมูล (Validation)
-- คุณสมบัติ เช่น required, min, max, pattern - การใช้ JavaScript เพื่อท่าการตรวจสอบ
+- คุณสมบัติ เช่น required, min, max, pattern
+- การใช้ JavaScript เพื่อท่าการตรวจสอบ
 6. ฟอร์มแบบสมัยใหม่ (HTML5)
-- placeholder: ตัวอย่างข้อความในช่องอินพุต - autofocus: ให้ฟอร์มเริ่มต้นโฟกัส
+- placeholder: ตัวอย่างข้อความในช่องอินพุต
+- autofocus: ให้ฟอร์มเริ่มต้นโฟกัส
 7. การส่งฟอร์ม (Form Submission)
 - การส่งข้อมูลไปยังเซิร์ฟเวอร์
-- การใช้ JavaScript (เช่น onsubmit)
-</pre>
-    <a href="#top">Back To Top</a>
+- การใช้ JavaScript (เช่น onsubmit)</pre>
+      </div>
+      <a class="back-top" href="#top">↑ Back to top</a>
+    </section>
 
-    <h2 id="multimedia">Embedding Multimedia (Audio & Video)</h2>
-<pre>
-    &lt;video&gt;: การฝังไฟล์วิดีโอลงบนหน้าเว็บ
-  ตัวอย่าง:
-  &lt;video width="320" height="240" controls&gt;
-    &lt;source src="movie.mp4" type="video/mp4"&gt;
-    Your browser does not support the video tag.
-  &lt;/video&gt;
+    <section class="topic" id="multimedia">
+      <div class="topic-head">
+        <span class="topic-tag">a / v</span>
+        <h2>Embedding Multimedia (Audio &amp; Video)</h2>
+      </div>
+      <div class="code-card">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="fname">multimedia.html</span>
+        </div>
+        <pre data-code><span class="code-note">&lt;!-- การฝังไฟล์วิดีโอลงบนหน้าเว็บ --&gt;</span>
+ตัวอย่าง:
+<span class="code-tag">&lt;video</span> <span class="code-attr">width</span>=<span class="code-value">"320"</span> <span class="code-attr">height</span>=<span class="code-value">"240"</span> <span class="code-attr">controls</span><span class="code-tag">&gt;</span>
+  <span class="code-tag">&lt;source</span> <span class="code-attr">src</span>=<span class="code-value">"movie.mp4"</span> <span class="code-attr">type</span>=<span class="code-value">"video/mp4"</span><span class="code-tag">&gt;</span>
+  Your browser does not support the video tag.
+<span class="code-tag">&lt;/video&gt;</span>
 
-&lt;audio&gt;: การฝังไฟล์เสียงลงบนหน้าเว็บ
-  ตัวอย่าง:
-  &lt;audio controls&gt;
-    &lt;source src="horse.mp3" type="audio/mpeg"&gt;
-    Your browser does not support the audio element.
-  &lt;/audio&gt;
+<span class="code-note">&lt;!-- การฝังไฟล์เสียงลงบนหน้าเว็บ --&gt;</span>
+ตัวอย่าง:
+<span class="code-tag">&lt;audio</span> <span class="code-attr">controls</span><span class="code-tag">&gt;</span>
+  <span class="code-tag">&lt;source</span> <span class="code-attr">src</span>=<span class="code-value">"horse.mp3"</span> <span class="code-attr">type</span>=<span class="code-value">"audio/mpeg"</span><span class="code-tag">&gt;</span>
+  Your browser does not support the audio element.
+<span class="code-tag">&lt;/audio&gt;</span>
 
-*หมายเหตุ: Attribute 'controls' จำเป็นต้องใส่เพื่อให้แสดงปุ่ม เล่น/หยุด/ปรับเสียง
-</pre>
-    <a href="#top">Back To Top</a>
+<span class="code-note">&lt;!-- หมายเหตุ: Attribute 'controls' จำเป็นต้องใส่เพื่อให้แสดงปุ่ม เล่น/หยุด/ปรับเสียง --&gt;</span></pre>
+      </div>
+      <a class="back-top" href="#top">↑ Back to top</a>
+    </section>
 
-    <h2 id="semantic">Semantic HTML</h2>
-<pre>
-- &lt;header&gt;: Defines a header for a document or section
-- &lt;nav&gt;: Defines navigation links
-- &lt;section&gt;: Defines a section in a document
-- &lt;article&gt;: Defines an article
-- &lt;aside&gt;: Defines content aside from the page content
-- &lt;footer&gt;: Defines a footer for a document or section
-</pre>
-    <a href="#top">Back To Top</a>
+    <section class="topic" id="semantic">
+      <div class="topic-head">
+        <span class="topic-tag">sem</span>
+        <h2>Semantic HTML</h2>
+      </div>
+      <div class="code-card">
+        <div class="window-bar">
+          <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+          <span class="fname">semantic.html</span>
+        </div>
+        <pre data-code>- <span class="code-tag">&lt;header&gt;</span>: Defines a header for a document or section
+      - <span class="code-tag">&lt;nav&gt;</span>: Defines navigation links
+      - <span class="code-tag">&lt;section&gt;</span>: Defines a section in a document
+      - <span class="code-tag">&lt;article&gt;</span>: Defines an article
+      - <span class="code-tag">&lt;aside&gt;</span>: Defines content aside from the page content
+      - <span class="code-tag">&lt;footer&gt;</span>: Defines a footer for a document or section</pre>
+      </div>
+      <a class="back-top" href="#top">↑ Back to top</a>
+    </section>
 
-
-    <h2 id="workshop">Workshop</h2>
-    <div class="workshop-box">
+    <section class="workshop" id="workshop">
+      <div class="workshop-box">
         <h3>My Workshop</h3>
-        <ul>
-            <li><a href="WebDesignW3/W03-heading.html">workshop 01 : Heading</a></li>
-            <li><a href="WebDesignW4/W04-formatting.html">workshop 02 : HTML Heading</a></li>
-            <li><a href="WebDesignW5/W05-01-formatting.html">workshop 03 : Formatting</a></li>
-            <li><a href="WebDesignW8/W08-01-link_image.html">workshop 04 : Link and Image</a></li>
-        </ul>
-        <p><a href="#top">TOP</a></p>
-        <hr>
-        <p><a href="https://www.w3schools.com/html/" target="_blank">Learn more about HTML</a></p>
-    </div>
-    <br>
-    <a href="#top">Back To Top</a>
+        <p class="sub">รวม Workshop ทั้งหมดระหว่างเรียนรายวิชานี้</p>
+        <div class="wgrid">
+          <a class="wcard" href="WebDesignW3/W03-heading.html">
+            <span class="num">01</span>
+            <span class="label">Heading</span>
+          </a>
+          <a class="wcard" href="WebDesignW4/W04-formatting.html">
+            <span class="num">02</span>
+            <span class="label">HTML Heading</span>
+          </a>
+          <a class="wcard" href="WebDesignW5/W05-01-formatting.html">
+            <span class="num">03</span>
+            <span class="label">Formatting</span>
+          </a>
+          <a class="wcard" href="WebDesignW8/W08-01-link_image.html">
+            <span class="num">04</span>
+            <span class="label">Link and Image</span>
+          </a>
+        </div>
+        <a class="learn-more" href="https://www.w3schools.com/html/" target="_blank" rel="noopener">Learn more about HTML →</a>
+      </div>
+      <a class="back-top" href="#top">↑ Back to top</a>
+    </section>
+
+    <footer>
+      <span>&lt;!-- 684259010 · HTML Tutorial · built with HTML &amp; CSS --&gt;</span>
+    </footer>
+  </main>
+</div>
 
 </body>
 </html>
