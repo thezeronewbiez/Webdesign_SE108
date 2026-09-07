@@ -1,0 +1,189 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "JetBrains Mono", "Noto Sans Thai", sans-serif, monospace;
+  line-height: 1.6;
+}
+:root {
+  /* สีพื้นหลัง */
+
+  /* สีเงา */
+  --header-shadow: 0 22px 22px rgba(58, 134, 255, 0.1);
+  /* สีข้อความ */
+  --Primary-color: #3a86ff;
+  --Secondary-color: #bdb2ff;
+  --Third-color: #ffd6e0;
+  --Forth-color: #fff4f4;
+
+  --Text-sub-color: rgb(80, 77, 77);
+  --Nav-text-color: rgb(39, 38, 38);
+}
+
+/*------------------------*/
+/*         Header         */
+/*------------------------*/
+.header {
+  box-shadow: var(--header-shadow);
+  background: rgba(255, 255, 255, 0.541);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  backdrop-filter: blur(10px);
+}
+.header-content {
+  text-align: center;
+  padding-block: 1rem;
+}
+
+.header-title {
+  color: var(--Primary-color);
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.header-subtitle {
+  color: var(--Text-sub-color);
+}
+
+/*------------------------*/
+/*         Navbar         */
+/*------------------------*/
+nav {
+  padding-block: 2rem;
+  text-align: center;
+}
+
+nav a {
+  text-decoration: none;
+
+  color: var(--Nav-text-color);
+  background: white;
+  padding: 0.65rem 1.2rem;
+  margin: 0.3rem;
+
+  border-radius: 999px;
+  box-shadow: var(--header-shadow);
+  border: 0.5px solid rgba(189, 178, 255, 0.35);
+
+  cursor: pointer;
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+  display: inline-block;
+
+  user-select: none;
+}
+
+nav a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(118, 185, 252, 0.411);
+}
+
+nav a.active {
+  background-color: var(--Secondary-color);
+  color: white;
+}
+/*------------------------*/
+/*          Main          */
+/*------------------------*/
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.25rem 3rem;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.pet-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.pet-card {
+  overflow: hidden;
+  background: white;
+  border: 1px solid rgba(189, 178, 255, 0.35);
+  border-radius: 1rem;
+  box-shadow: 0 8px 22px rgba(58, 134, 255, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.pet-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--Primary-color);
+  box-shadow: 0 16px 30px rgba(58, 134, 255, 0.22);
+}
+
+.pet-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.pet-card:hover img {
+  transform: scale(1.06);
+}
+
+.pet-content {
+  padding: 1.25rem;
+}
+
+.pet-content h2 {
+  color: var(--Nav-text-color);
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.pet-content p {
+  color: var(--Text-sub-color);
+  margin-bottom: 0.75rem;
+}
+
+.pet-content .breed {
+  color: var(--Primary-color);
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.pet-content a {
+  display: inline-block;
+  color: var(--Primary-color);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.pet-content a:hover {
+  color: #245fc2;
+  transform: translateX(4px);
+}
+
+/*------------------------*/
+/*          Footer        */
+/*------------------------*/
+footer {
+  text-align: center;
+  padding: 1.5rem 0;
+  background: var(--Secondary-color);
+  color: white;
+}
